@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -18,8 +19,9 @@ public class LocationDaoImpl implements LocationDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void addLocation(Location location) {
-        getSession().save(location);
+    public Location  addLocation(Location location) {
+        Serializable save = getSession().save(location);
+        return (Location) getSession().get(Location.class, save);
     }
 
     public List<Location> listLocations() {

@@ -25,8 +25,8 @@ public class UserServiceImpl implements UserService {
     ServletContext context;
 
     @Transactional
-    public void addUser(User user) {
-        userDao.addUser(user);
+    public User addUser(User user) {
+        return userDao.addUser(user);
     }
 
     @Transactional
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User findById(Integer id) {
         User user = userDao.findById(id);
-         addLinkToEntries(user);
+        addLinkToEntries(user);
         return user;
     }
 

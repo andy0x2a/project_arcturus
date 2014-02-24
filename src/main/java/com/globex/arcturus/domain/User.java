@@ -1,6 +1,7 @@
 package com.globex.arcturus.domain;
 
 import com.globex.arcturus.domain.helper.Linkable;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -11,6 +12,7 @@ import java.util.Date;
  * Date: 2/20/14
  */
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name = "user")
 public class User extends Linkable {
 

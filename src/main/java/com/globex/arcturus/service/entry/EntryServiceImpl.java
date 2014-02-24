@@ -28,10 +28,8 @@ public class EntryServiceImpl implements EntryService {
 
 
     @Transactional
-    public void addEntry(Entry entry) {
-
-
-        entryDao.addEntry(entry);
+    public Entry addEntry(Entry entry) {
+        return entryDao.addEntry(entry);
     }
 
     @Transactional

@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -21,8 +22,9 @@ public class EntryDaoImpl implements EntryDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void addEntry(Entry entry) {
-        getSession().save(entry);
+    public Entry addEntry(Entry entry) {
+        Serializable save = getSession().save(entry);
+        return (Entry) getSession().get(Entry.class, save);
     }
 
     public List<Entry> listEntries() {

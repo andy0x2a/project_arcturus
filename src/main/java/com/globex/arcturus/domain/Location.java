@@ -1,6 +1,7 @@
 package com.globex.arcturus.domain;
 
 import com.globex.arcturus.domain.helper.Linkable;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
  * Date: 2/20/14
  */
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Table(name = "location")
 public class Location extends Linkable {
 

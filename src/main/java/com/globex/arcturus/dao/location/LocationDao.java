@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface LocationDao {
 
-    void addLocation(Location location);
+    Location addLocation(Location location);
 
     List<Location> listLocations();
 

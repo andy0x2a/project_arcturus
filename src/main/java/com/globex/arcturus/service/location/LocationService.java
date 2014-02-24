@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface LocationService {
 
-    void addLocation(Location location);
+    Location addLocation(Location location);
     List<Location> listLocations();
     void removeLocation(Integer id);
     Location findById(Integer id);

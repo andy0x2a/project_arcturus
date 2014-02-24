@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface EntryService {
 
-    public void addEntry(Entry entry);
+    public Entry addEntry(Entry entry);
     public List<Entry> listEntries();
     public void removeEntry(Integer id);
     public Entry findById(Integer id);

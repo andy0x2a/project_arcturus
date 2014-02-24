@@ -2,6 +2,7 @@ package com.globex.arcturus.domain;
 
 
 import com.globex.arcturus.domain.helper.Linkable;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "entry")
+@JsonIgnoreProperties(ignoreUnknown = true)
 //@JsonIgnoreProperties({"user"})
 public class Entry extends Linkable {
 

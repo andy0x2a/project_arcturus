@@ -2,12 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       	xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:jee="http://www.springframework.org/schema/jee"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:tx="http://www.springframework.org/schema/tx"
-       	xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                                             http://www.springframework.org/schema/beans/spring-beans.xsd
                                             http://www.springframework.org/schema/context
@@ -53,7 +53,7 @@
             <value>classpath:hibernate.cfg.xml</value>
         </property>
         <!--<property name="configurationClass">-->
-            <!--<value>org.hibernate.cfg.AnnotationConfiguration</value>-->
+        <!--<value>org.hibernate.cfg.AnnotationConfiguration</value>-->
         <!--</property>-->
         <property name="hibernateProperties">
             <props>
@@ -65,32 +65,31 @@
 
 
 
-               <!--HIBERNATE STUFF FOR H2-->
+    <!--HIBERNATE STUFF FOR H2-->
 
 
     <!--<bean id="dataSource"-->
-          <!--class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"-->
-          <!--p:driverClassName="org.h2.Driver"-->
-          <!--p:url="jdbc:h2:~/anewman" p:username="sa" />-->
-
+    <!--class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"-->
+    <!--p:driverClassName="org.h2.Driver"-->
+    <!--p:url="jdbc:h2:~/anewman" p:username="sa" />-->
 
 
     <!--<bean id="sessionFactory"-->
-          <!--class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">-->
-        <!--<property name="dataSource" ref="dataSource"/>-->
-        <!--<property name="configLocation">-->
-            <!--<value>classpath:hibernate.cfg.xml</value>-->
-        <!--</property>-->
-        <!--&lt;!&ndash;<property name="configurationClass">&ndash;&gt;-->
-            <!--&lt;!&ndash;<value>org.hibernate.cfg.AnnotationConfiguration</value>&ndash;&gt;-->
-        <!--&lt;!&ndash;</property>&ndash;&gt;-->
-        <!--<property name="hibernateProperties">-->
-            <!--<props>-->
-                <!--<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>-->
-                <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
-                <!--<prop key="hibernate.show_sql">true</prop>-->
-            <!--</props>-->
-        <!--</property>-->
+    <!--class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">-->
+    <!--<property name="dataSource" ref="dataSource"/>-->
+    <!--<property name="configLocation">-->
+    <!--<value>classpath:hibernate.cfg.xml</value>-->
+    <!--</property>-->
+    <!--&lt;!&ndash;<property name="configurationClass">&ndash;&gt;-->
+    <!--&lt;!&ndash;<value>org.hibernate.cfg.AnnotationConfiguration</value>&ndash;&gt;-->
+    <!--&lt;!&ndash;</property>&ndash;&gt;-->
+    <!--<property name="hibernateProperties">-->
+    <!--<props>-->
+    <!--<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>-->
+    <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
+    <!--<prop key="hibernate.show_sql">true</prop>-->
+    <!--</props>-->
+    <!--</property>-->
     <!--</bean>-->
 
 

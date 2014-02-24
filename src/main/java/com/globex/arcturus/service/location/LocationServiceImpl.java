@@ -22,8 +22,8 @@ public class LocationServiceImpl implements LocationService {
 
 
     @Transactional
-    public void addLocation(Location location) {
-        locationDao.addLocation(location);
+    public Location addLocation(Location location) {
+        return locationDao.addLocation(location);
     }
 
     @Transactional

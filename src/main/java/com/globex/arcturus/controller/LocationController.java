@@ -4,11 +4,9 @@ import com.globex.arcturus.domain.Location;
 import com.globex.arcturus.service.location.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -21,10 +19,8 @@ import java.util.List;
 @RequestMapping("/location")
 public class LocationController {
 
-
     @Autowired
     private LocationService locationService;
-
 
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
@@ -34,16 +30,43 @@ public class LocationController {
 
     @RequestMapping(value = "/{locationId} ", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public Location getLocation(@PathVariable String locationId) {
+    public Location getLocation(@PathVariable Integer locationId) {
+
+        return locationService.findById(locationId);
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json")
+    @ResponseBody
+    public Location add(@RequestBody Location location, HttpServletRequest request) {
+        System.out.println("ADDING LOCATION");
         Location result = null;
-        try {
+        if (location != null) {
 
-            Integer locationIdInt = Integer.parseInt(locationId);
-            result = locationService.findById(locationIdInt);
-        } catch (NumberFormatException e) {
+            result = locationService.addLocation(location);
 
+        }
+        return result;
+
+    }
+
+    @RequestMapping(value = "/{locationId}", method = RequestMethod.PUT, produces = "application/json")
+    public
+    @ResponseBody
+    Location update(@RequestBody Location location, @PathVariable Integer locationId,
+                    HttpServletRequest request) {
+        System.out.println("UPDATING " + locationId);
+        Location result = null;
+        if (location != null) {
+            if (location.getId() != null || location.getId().equals(locationId)) {
+
+                result = locationService.updateLocation(location);
+            } else {
+                System.out.println("ID PROBLEM");
+                return null;
+            }
         }
 
         return result;
+
     }
 }

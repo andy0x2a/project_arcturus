@@ -40,56 +40,45 @@ public class UserController {
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public User getUser(@PathVariable String userId) {
-        User user = null;
-        try {
-            int userIdInteger = Integer.parseInt(userId);
-            user = userService.findById(userIdInteger);
-        } catch (NumberFormatException e) {
-
-        }
-        return user;
+    public User getUser(@PathVariable Integer userId) {
+        return userService.findById(userId);
     }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.PUT, produces = "application/json")
- public @ResponseBody User update(@RequestBody User user , @PathVariable Integer userId,
-                                   HttpServletRequest request) {
+    public
+    @ResponseBody
+    User update(@RequestBody User user, @PathVariable Integer userId,
+                HttpServletRequest request) {
 
         System.out.println("UPDATING " + userId);
+        User result = null;
+        if (user != null) {
+            if (user.getId() != null || user.getId().equals(userId)) {
 
+                result = userService.updateUser(user);
+            } else {
+                System.out.println("ID PROBLEM");
+                return null;
+            }
+        }
 
-        User result= null;
-     if (user != null) {
-         System.out.println("user.id " + user.getId());
-         System.out.println("user.email " + user.getEmail());
-         System.out.println("user.firstname " + user.getFirstname());
-         System.out.println("user.lastname " + user.getLastname());
+        return result;
 
-
-             if (user.getId() != null || user.getId().equals(userId)) {
-
-                 result = userService.updateUser(user);
-             } else {
-                 System.out.println("ID PROBLEM");
-                 return null;
-             }
-     }
-
-     return result;
-
- }
-
-
+    }
 
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json")
-    public void add(HttpServletRequest request) {
-        User user = new User();
-        user.setEmail("anewman@qtrade.ca");
-        user.setFirstname("Andy!");
-        user.setLastname("Newman!");
-        user.setJoinDate(new Date());
+    @ResponseBody
+    public User add(@RequestBody User user, HttpServletRequest request) {
+        System.out.println("ADDING USER");
+                User result = null;
+        if (user != null) {
+            if (user.getId() != null && user.getEmail() != null) {
+                user.setJoinDate(new Date());
+                result = userService.addUser(user);
+            }
+        }
 
-        userService.addUser(user);
+        return  result;
     }
 
     @RequestMapping(value = "/{userId}/entries/", method = RequestMethod.GET, produces = "application/json")

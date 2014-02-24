@@ -11,10 +11,13 @@ import java.util.List;
  */
 public interface UserService {
 
-    public void addUser(User user);
-    public List<User> listUsers();
-    public void removeUser(Integer id);
-    public User findById(Integer id);
+    User addUser(User user);
+
+    List<User> listUsers();
+
+    void removeUser(Integer id);
+
+    User findById(Integer id);
 
     User updateUser(User user);
 }
