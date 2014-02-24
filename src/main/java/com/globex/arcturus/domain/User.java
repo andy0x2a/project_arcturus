@@ -15,7 +15,7 @@ import java.util.Date;
 public class User extends Linkable {
 
 
-    private static final String TYPE = "vnd.globex.arcturus.USER";
+    public static final String TYPE = "vnd.globex.arcturus.USER";
 
     @Id
     @Column(name = "ID")

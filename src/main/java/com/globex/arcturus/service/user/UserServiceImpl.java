@@ -57,7 +57,9 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     public User updateUser(User user) {
-        return userDao.updateUser(user);
+        User updatedUser = userDao.updateUser(user);
+        addLinkToEntries(updatedUser);
+        return updatedUser;
     }
 
     private void addLinkToEntries(User user) {

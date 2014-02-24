@@ -20,7 +20,7 @@ public class Entry extends Linkable {
 
     @Id
     @Column(name = "ID")
-    @GenericGenerator(name="andy", strategy="increment")
+    @GenericGenerator(name = "andy", strategy = "increment")
     @GeneratedValue(generator = "andy")
     private Integer id;
 
@@ -29,6 +29,9 @@ public class Entry extends Linkable {
 
     @Column(name = "user_id")
     private Integer userId;
+
+    @Column(name = "location_id")
+    private Integer locationId;
 
 
     @Override
@@ -61,6 +64,14 @@ public class Entry extends Linkable {
         this.id = id;
     }
 
+    public Integer getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(Integer locationId) {
+        this.locationId = locationId;
+    }
+
     /*
 
 //    @JsonIgnore
@@ -80,5 +91,6 @@ public class Entry extends Linkable {
     @JoinColumn(name = "user_id")
     private User user;
 */
+
 
 }

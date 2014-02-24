@@ -17,6 +17,7 @@ public interface EntryDao {
     public Entry findById(Integer id);
 
     List<Entry> listEntriesForUser(String userId);
+    List<Entry> listEntriesForLocation(String locationId);
 
     Entry updateEntry(Entry entry);
 }

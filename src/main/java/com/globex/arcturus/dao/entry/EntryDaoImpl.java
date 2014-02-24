@@ -49,6 +49,13 @@ public class EntryDaoImpl implements EntryDao {
         return list;
     }
 
+    public List<Entry> listEntriesForLocation(String locationId) {
+           Query query = getSession().createQuery("from Entry where location_id= :locationId");
+        query.setParameter("locationId", locationId);
+        List list = query.list();
+        return list;
+    }
+
     public Entry updateEntry(Entry entry) {
 
         Session currentSession = getSession();

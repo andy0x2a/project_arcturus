@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class Location extends Linkable {
 
 
-    private static final String TYPE = "vnd.globex.arcturus.LOCATION";
+    public static final String TYPE = "vnd.globex.arcturus.LOCATION";
 
     @Id
     @Column(name = "ID")
@@ -28,6 +28,7 @@ public class Location extends Linkable {
     private String latitude;
     @Column(name = "LONGITUDE")
     private String longitude;
+
 
     public Integer getId() {
         return id;
