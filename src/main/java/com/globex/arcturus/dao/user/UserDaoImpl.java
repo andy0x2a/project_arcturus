@@ -1,6 +1,7 @@
 package com.globex.arcturus.dao.user;
 
 import com.globex.arcturus.domain.User;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,24 +20,34 @@ public class UserDaoImpl implements UserDao {
     private SessionFactory sessionFactory;
 
     public void addUser(User user) {
-        sessionFactory.getCurrentSession().save(user);
+        getSession().save(user);
     }
 
     public List<User> listUsers() {
-        return sessionFactory.getCurrentSession().createQuery("from User")
+        return getSession().createQuery("from User")
                 .list();
     }
 
     public void removeUser(Integer id) {
-        User user = (User) sessionFactory.getCurrentSession().load(
+        User user = (User) getSession().load(
                 User.class, id);
         if (null != user) {
-            sessionFactory.getCurrentSession().delete(user);
+            getSession().delete(user);
         }
     }
 
     public User findById(Integer id) {
-//        return sessionFactory.getCurrentSession()..byId(User.class)
-        return null;
+
+        return (User) getSession().get(User.class, id);
+    }
+
+    private Session getSession() {
+        return sessionFactory.getCurrentSession();
+    }
+
+    public User updateUser(User user) {
+        Session session = getSession();
+        session.update(user);
+        return (User) session.get(User.class, user.getId());
     }
 }

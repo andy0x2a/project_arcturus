@@ -39,40 +39,11 @@
 
     <!--HIBERNATE STUFF FOR MYSQL-->
 
-    <!--<bean id="dataSource"-->
-          <!--class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"-->
-          <!--p:driverClassName="com.mysql.jdbc.Driver"-->
-          <!--p:url="jdbc:mysql://localhost:3306/arcturus" p:username="andy"-->
-          <!--p:password="aPassword"/>-->
-
-
-    <!--<bean id="sessionFactory"-->
-          <!--class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">-->
-        <!--<property name="dataSource" ref="dataSource"/>-->
-        <!--<property name="configLocation">-->
-            <!--<value>classpath:hibernate.cfg.xml</value>-->
-        <!--</property>-->
-        <!--&lt;!&ndash;<property name="configurationClass">&ndash;&gt;-->
-            <!--&lt;!&ndash;<value>org.hibernate.cfg.AnnotationConfiguration</value>&ndash;&gt;-->
-        <!--&lt;!&ndash;</property>&ndash;&gt;-->
-        <!--<property name="hibernateProperties">-->
-            <!--<props>-->
-                <!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>-->
-                <!--<prop key="hibernate.show_sql">true</prop>-->
-            <!--</props>-->
-        <!--</property>-->
-    <!--</bean>-->
-
-
-
-               <!--HIBERNATE STUFF FOR H2-->
-
-
     <bean id="dataSource"
           class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
-          p:driverClassName="org.h2.Driver"
-          p:url="jdbc:h2:~/anewman" p:username="sa" />
-
+          p:driverClassName="com.mysql.jdbc.Driver"
+          p:url="jdbc:mysql://localhost:3306/arcturus" p:username="andy"
+          p:password="aPassword"/>
 
 
     <bean id="sessionFactory"
@@ -86,12 +57,41 @@
         <!--</property>-->
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
             </props>
         </property>
     </bean>
+
+
+
+               <!--HIBERNATE STUFF FOR H2-->
+
+
+    <!--<bean id="dataSource"-->
+          <!--class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"-->
+          <!--p:driverClassName="org.h2.Driver"-->
+          <!--p:url="jdbc:h2:~/anewman" p:username="sa" />-->
+
+
+
+    <!--<bean id="sessionFactory"-->
+          <!--class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
+        <!--<property name="configLocation">-->
+            <!--<value>classpath:hibernate.cfg.xml</value>-->
+        <!--</property>-->
+        <!--&lt;!&ndash;<property name="configurationClass">&ndash;&gt;-->
+            <!--&lt;!&ndash;<value>org.hibernate.cfg.AnnotationConfiguration</value>&ndash;&gt;-->
+        <!--&lt;!&ndash;</property>&ndash;&gt;-->
+        <!--<property name="hibernateProperties">-->
+            <!--<props>-->
+                <!--<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>-->
+                <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
+                <!--<prop key="hibernate.show_sql">true</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
 
 
     <tx:annotation-driven/>

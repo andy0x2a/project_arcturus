@@ -1,6 +1,6 @@
 package com.globex.arcturus.service.entry;
 
-import com.globex.arcturus.dao.EntryDao;
+import com.globex.arcturus.dao.entry.EntryDao;
 import com.globex.arcturus.domain.Entry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +21,8 @@ public class EntryServiceImpl implements EntryService{
 
     @Transactional
     public void addEntry(Entry entry) {
+
+
         entryDao.addEntry(entry);
     }
 
@@ -37,5 +39,15 @@ public class EntryServiceImpl implements EntryService{
     @Transactional
     public Entry findById(Integer id) {
         return entryDao.findById(id);
+    }
+
+    @Transactional
+    public List<Entry> listEntriesForUser(String userId) {
+        return entryDao.listEntriesForUser(userId);
+    }
+
+    @Transactional
+    public Entry updateEntry(Entry entry) {
+        return entryDao.updateEntry(entry);
     }
 }

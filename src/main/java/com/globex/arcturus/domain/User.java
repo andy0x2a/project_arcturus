@@ -1,7 +1,8 @@
 package com.globex.arcturus.domain;
 
+import com.globex.arcturus.domain.helper.Linkable;
+
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,8 +12,10 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "user")
-public class User implements Serializable {
+public class User extends Linkable {
 
+
+    private static final String TYPE = "vnd.globex.arcturus.USER";
 
     @Id
     @Column(name = "ID")
@@ -30,6 +33,13 @@ public class User implements Serializable {
 
     @Column(name = "JOINDATE")
     private Date joinDate;
+
+
+
+    @Override
+    public String getType() {
+        return this.TYPE;
+    }
 
 
     public Integer getId() {
@@ -71,5 +81,21 @@ public class User implements Serializable {
     public void setJoinDate(Date joinDate) {
         this.joinDate = joinDate;
     }
+
+/*
+    @JsonManagedReference
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private Set<Entry> entries = new HashSet<Entry>(0);
+
+
+    @JsonManagedReference
+    public Set<Entry> getEntries() {
+        return entries;
+    }
+
+    @JsonManagedReference
+    public void setEntries(Set<Entry> entries) {
+        this.entries = entries;
+    }*/
 
 }

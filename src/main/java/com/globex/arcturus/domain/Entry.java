@@ -1,5 +1,9 @@
 package com.globex.arcturus.domain;
 
+
+import com.globex.arcturus.domain.helper.Linkable;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 /**
@@ -9,16 +13,45 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "entry")
-public class Entry {
+//@JsonIgnoreProperties({"user"})
+public class Entry extends Linkable {
 
+    private static final String TYPE = "vnd.globex.arcturus.ENTRY";
 
     @Id
     @Column(name = "ID")
-    @GeneratedValue
+    @GenericGenerator(name="andy", strategy="increment")
+    @GeneratedValue(generator = "andy")
     private Integer id;
 
-    @Column(name="RATING")
+    @Column(name = "RATING")
     private Double rating;
+
+    @Column(name = "user_id")
+    private Integer userId;
+
+
+    @Override
+    public String getType() {
+        return Entry.TYPE;
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public Integer getId() {
         return id;
@@ -27,4 +60,25 @@ public class Entry {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    /*
+
+//    @JsonIgnore
+    @JsonBackReference
+    public User getUser() {
+        return user;
+    }
+
+//    @JsonIgnore
+    @JsonBackReference
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
+*/
+
 }

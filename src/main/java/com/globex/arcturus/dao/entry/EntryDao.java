@@ -15,4 +15,8 @@ public interface EntryDao {
     public List<Entry> listEntries();
     public void removeEntry(Integer id);
     public Entry findById(Integer id);
+
+    List<Entry> listEntriesForUser(String userId);
+
+    Entry updateEntry(Entry entry);
 }

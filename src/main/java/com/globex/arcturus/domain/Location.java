@@ -1,5 +1,7 @@
 package com.globex.arcturus.domain;
 
+import com.globex.arcturus.domain.helper.Linkable;
+
 import javax.persistence.*;
 
 /**
@@ -9,8 +11,10 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "location")
-public class Location {
+public class Location extends Linkable {
 
+
+    private static final String TYPE = "vnd.globex.arcturus.LOCATION";
 
     @Id
     @Column(name = "ID")
@@ -22,7 +26,6 @@ public class Location {
 
     @Column(name = "LATITUDE")
     private String latitude;
-
     @Column(name = "LONGITUDE")
     private String longitude;
 
@@ -56,5 +59,10 @@ public class Location {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    @Override
+    public String getType() {
+        return Location.TYPE;
     }
 }
