@@ -1,7 +1,6 @@
 package com.globex.arcturus.dao.entry;
 
 import com.globex.arcturus.domain.Entry;
-import com.globex.arcturus.domain.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -33,7 +32,7 @@ public class EntryDaoImpl implements EntryDao {
     }
 
     public void removeEntry(Integer id) {
-        User entry = (User) getSession().load(
+        Entry entry = (Entry) getSession().load(
                 Entry.class, id);
         if (null != entry) {
             getSession().delete(entry);

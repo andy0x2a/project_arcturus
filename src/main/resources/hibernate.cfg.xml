@@ -8,6 +8,7 @@
         <mapping class="com.globex.arcturus.domain.User" />
         <mapping class="com.globex.arcturus.domain.Entry" />
         <mapping class="com.globex.arcturus.domain.Location" />
+        <mapping class="com.globex.arcturus.domain.City" />
 
     </session-factory>
 

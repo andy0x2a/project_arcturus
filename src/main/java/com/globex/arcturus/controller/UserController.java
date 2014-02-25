@@ -53,7 +53,7 @@ public class UserController {
         System.out.println("UPDATING " + userId);
         User result = null;
         if (user != null) {
-            if (user.getId() != null || user.getId().equals(userId)) {
+            if (user.getId() != null && user.getId().equals(userId)) {
 
                 result = userService.updateUser(user);
             } else {

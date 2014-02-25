@@ -57,7 +57,7 @@ public class LocationController {
         System.out.println("UPDATING " + locationId);
         Location result = null;
         if (location != null) {
-            if (location.getId() != null || location.getId().equals(locationId)) {
+            if (location.getId() != null && location.getId().equals(locationId)) {
 
                 result = locationService.updateLocation(location);
             } else {

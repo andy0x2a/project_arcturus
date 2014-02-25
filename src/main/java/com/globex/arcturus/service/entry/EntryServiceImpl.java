@@ -91,8 +91,9 @@ public class EntryServiceImpl implements EntryService {
     }
 
     private void addUserLink(Entry entry) {
+        System.out.println("ENTRY USER ID:" + entry.getUserId());
         String urlTemplate = context.getContextPath() + "/users/{userId}/";
-        String url = urlTemplate.replace("{userID}", entry.getUserId().toString());
+        String url = urlTemplate.replace("{userId}", entry.getUserId().toString());
         Link link = new Link().setUrl(url).setRel("user").setType(User.TYPE);
         entry.addLink(link);
     }

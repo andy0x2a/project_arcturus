@@ -59,7 +59,7 @@ public class EntryController {
         System.out.println("UPDATING " + entryId);
         Entry result = null;
         if (entry != null) {
-            if (entry.getId() != null || entry.getId().equals(entryId)) {
+            if (entry.getId() != null && entry.getId().equals(entryId)) {
 
                 result = entryService.updateEntry(entry);
             } else {
