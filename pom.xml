@@ -13,13 +13,6 @@
     <properties>
         <maven.war.plugin.version>2.2</maven.war.plugin.version>
         <non-respository-lib.version>1.0</non-respository-lib.version>
-        <weblogic.version>10.3.4</weblogic.version>
-        <bea-home>C:\bea11g</bea-home>
-        <weblogic-home>${bea-home}\Middleware\wlserver_10.3</weblogic-home>
-        <weblogic-admin-url-dev>t3://localhost:80</weblogic-admin-url-dev>
-        <weblogic-domain-name-dev>dev_portal</weblogic-domain-name-dev>
-        <weblogic-admin-login-dev>admin</weblogic-admin-login-dev>
-        <weblogic-admin-pw-dev>qpassias11</weblogic-admin-pw-dev>
         <javaee.api.version>5</javaee.api.version>
         <org.springframework.version>3.1.2.RELEASE</org.springframework.version>
         <org.hibernate.version>4.2.8.Final</org.hibernate.version>
