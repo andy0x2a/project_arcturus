@@ -18,9 +18,8 @@
         <org.hibernate.version>4.2.8.Final</org.hibernate.version>
         <spring.test.mvc.version>1.0.0.BUILD-SNAPSHOT</spring.test.mvc.version>
         <cglib.version>2.2</cglib.version>
-        <jstl.version>1.2</jstl.version>
-        <gson.version>2.2.4</gson.version>
         <slf4j-version>1.7.6</slf4j-version>
+        <jackson.version>1.9.13</jackson.version>
     </properties>
 
     <build>
@@ -176,12 +175,12 @@
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-core-asl</artifactId>
-            <version>1.9.13</version>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.9.13</version>
+            <version>${jackson.version}</version>
         </dependency>
 
         <!--Test Dependencies-->
