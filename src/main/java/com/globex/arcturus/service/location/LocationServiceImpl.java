@@ -48,4 +48,23 @@ public class LocationServiceImpl implements LocationService {
         Location updatedLocation = locationDao.updateLocation(location);
         return updatedLocation;
     }
+
+    @Transactional
+    public List<Location> listLocationsForCity(Integer cityId) {
+
+        List<Location> locations = locationDao.listLocationsForCity(cityId);
+        if (locations != null) {
+            for (Location location : locations) {
+                  addLinks(location);
+            }
+        }
+
+        return locations;
+
+    }
+
+    private void addLinks(Location location) {
+
+    }
+
 }

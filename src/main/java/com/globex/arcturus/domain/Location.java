@@ -32,6 +32,10 @@ public class Location extends Linkable {
     private String longitude;
 
 
+    @Column(name = "city_id")
+    private Integer cityId;
+
+
     public Integer getId() {
         return id;
     }
@@ -67,5 +71,13 @@ public class Location extends Linkable {
     @Override
     public String getType() {
         return Location.TYPE;
+    }
+
+    public Integer getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(Integer cityId) {
+        this.cityId = cityId;
     }
 }

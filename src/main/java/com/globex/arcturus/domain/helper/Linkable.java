@@ -13,6 +13,9 @@ public abstract class Linkable implements Serializable {
 
 
     @Transient
+    private Link Self;
+
+    @Transient
     private List<Link> links = new ArrayList<Link>(2);
 
     @Transient
@@ -33,4 +36,11 @@ public abstract class Linkable implements Serializable {
     }
 
 
+    public Link getSelf() {
+        return Self;
+    }
+
+    public void setSelf(Link self) {
+        Self = self;
+    }
 }

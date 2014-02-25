@@ -2,6 +2,8 @@ package com.globex.arcturus.service.city;
 
 import com.globex.arcturus.dao.city.CityDao;
 import com.globex.arcturus.domain.City;
+import com.globex.arcturus.domain.Location;
+import com.globex.arcturus.domain.helper.Link;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,6 +63,12 @@ public class CityServiceImpl implements CityService {
     }
 
     private void addLinks(City city) {
+       String urlTemplate = context.getContextPath() + "/city/{cityId}/locations";
+         if (city.getId() != null) {
+             String url = urlTemplate.replace("{cityId}", city.getId().toString());
+             Link link = new Link().setUrl(url).setRel("locations").setType(Location.TYPE);
+             city.addLink(link);
+         }
     }
 
 }

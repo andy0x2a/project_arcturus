@@ -17,4 +17,5 @@ public interface LocationService {
     Location findById(Integer id);
     Location  updateLocation(Location location);
 
+    List<Location> listLocationsForCity(Integer cityId);
 }
