@@ -4,11 +4,12 @@ import com.globex.arcturus.dao.city.CityDao;
 import com.globex.arcturus.domain.City;
 import com.globex.arcturus.domain.Location;
 import com.globex.arcturus.domain.helper.Link;
+import com.globex.arcturus.domain.helper.Linkable;
+import com.globex.arcturus.service.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.ServletContext;
 import java.util.List;
 
 /**
@@ -17,14 +18,10 @@ import java.util.List;
  * Date: 2/20/14
  */
 @Service
-public class CityServiceImpl implements CityService {
+public class CityServiceImpl extends AbstractService implements CityService {
 
     @Autowired
     private CityDao cityDao;
-
-    @Autowired
-    ServletContext context;
-
 
     @Transactional
     public City addCity(City city) {
@@ -63,12 +60,19 @@ public class CityServiceImpl implements CityService {
     }
 
     private void addLinks(City city) {
-       String urlTemplate = context.getContextPath() + "/city/{cityId}/locations";
+       String urlTemplate = getContext().getContextPath() + "/city/{cityId}/locations";
          if (city.getId() != null) {
              String url = urlTemplate.replace("{cityId}", city.getId().toString());
              Link link = new Link().setUrl(url).setRel("locations").setType(Location.TYPE);
              city.addLink(link);
          }
+
+        addSelf(city);
+    }
+     @Override
+    public String getSelfURL(Linkable entity) {
+        String urlTemplate = getContext().getContextPath() + "/city/{id}";
+        return urlTemplate.replace("{id}", ((City) entity).getId().toString());
     }
 
 }

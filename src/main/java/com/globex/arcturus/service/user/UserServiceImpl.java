@@ -3,11 +3,12 @@ package com.globex.arcturus.service.user;
 import com.globex.arcturus.dao.user.UserDao;
 import com.globex.arcturus.domain.User;
 import com.globex.arcturus.domain.helper.Link;
+import com.globex.arcturus.domain.helper.Linkable;
+import com.globex.arcturus.service.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.ServletContext;
 import java.util.List;
 
 /**
@@ -16,13 +17,10 @@ import java.util.List;
  * Date: 2/20/14
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends AbstractService implements UserService {
 
     @Autowired
     private UserDao userDao;
-
-    @Autowired
-    ServletContext context;
 
     @Transactional
     public User addUser(User user) {
@@ -67,7 +65,7 @@ public class UserServiceImpl implements UserService {
         link.setRel("entries");
         link.setType("vnd.globex.arcturus.LIST");
 
-        String contextPath = context.getContextPath();
+        String contextPath = getContext().getContextPath();
         String urlTemplate = contextPath + "/users/{userId}/entries/";
         String url = urlTemplate.replace("{userId}", user.getId().toString());
 
@@ -75,5 +73,13 @@ public class UserServiceImpl implements UserService {
 
         user.addLink(link);
 
+        addSelf(user);
+    }
+
+    @Override
+    public String getSelfURL(Linkable entity) {
+        String urlTemplate = getContext().getContextPath() + "/users/{id}";
+        return urlTemplate.replace("{id}", ((User) entity).getId().toString());
     }
 }
+

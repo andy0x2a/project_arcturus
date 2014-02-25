@@ -5,11 +5,12 @@ import com.globex.arcturus.domain.Entry;
 import com.globex.arcturus.domain.Location;
 import com.globex.arcturus.domain.User;
 import com.globex.arcturus.domain.helper.Link;
+import com.globex.arcturus.domain.helper.Linkable;
+import com.globex.arcturus.service.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.ServletContext;
 import java.util.List;
 
 /**
@@ -18,14 +19,10 @@ import java.util.List;
  * Date: 2/20/14
  */
 @Service
-public class EntryServiceImpl implements EntryService {
+public class EntryServiceImpl extends AbstractService implements EntryService {
 
     @Autowired
     private EntryDao entryDao;
-
-    @Autowired
-    ServletContext context;
-
 
     @Transactional
     public Entry addEntry(Entry entry) {
@@ -88,22 +85,28 @@ public class EntryServiceImpl implements EntryService {
     private void addLinks(Entry entry) {
         addUserLink(entry);
         addLocationLink(entry);
+        addSelf(entry);
     }
 
     private void addUserLink(Entry entry) {
         System.out.println("ENTRY USER ID:" + entry.getUserId());
-        String urlTemplate = context.getContextPath() + "/users/{userId}/";
+        String urlTemplate = getContext().getContextPath() + "/users/{userId}/";
         String url = urlTemplate.replace("{userId}", entry.getUserId().toString());
         Link link = new Link().setUrl(url).setRel("user").setType(User.TYPE);
         entry.addLink(link);
     }
 
      private void addLocationLink(Entry entry) {
-        String urlTemplate = context.getContextPath() + "/location/{locationId}/";
+        String urlTemplate = getContext().getContextPath() + "/location/{locationId}/";
          if (entry.getLocationId() != null) {
              String url = urlTemplate.replace("{locationId}", entry.getLocationId().toString());
              Link link = new Link().setUrl(url).setRel("location").setType(Location.TYPE);
              entry.addLink(link);
          }
+    }
+     @Override
+    public String getSelfURL(Linkable entity) {
+        String urlTemplate = getContext().getContextPath() + "/entries/{id}";
+        return urlTemplate.replace("{id}", ((Entry) entity).getId().toString());
     }
 }
