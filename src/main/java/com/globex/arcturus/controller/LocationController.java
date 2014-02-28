@@ -1,5 +1,6 @@
 package com.globex.arcturus.controller;
 
+import com.globex.arcturus.domain.Entry;
 import com.globex.arcturus.domain.Location;
 import com.globex.arcturus.service.location.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ public class LocationController {
     @Autowired
     private LocationService locationService;
 
+
+
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public List<Location> getLocations() {
@@ -33,6 +36,13 @@ public class LocationController {
     public Location getLocation(@PathVariable Integer locationId) {
 
         return locationService.findById(locationId);
+    }
+
+     @RequestMapping(value = "/{locationId}/entries", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public List<Entry> getLocationEntries(@PathVariable Integer locationId) {
+
+        return locationService.getEntries(locationId);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json")

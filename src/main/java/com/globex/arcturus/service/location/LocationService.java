@@ -1,5 +1,6 @@
 package com.globex.arcturus.service.location;
 
+import com.globex.arcturus.domain.Entry;
 import com.globex.arcturus.domain.Location;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface LocationService {
     Location  updateLocation(Location location);
 
     List<Location> listLocationsForCity(Integer cityId);
+
+    List<Entry> getEntries(Integer locationId);
 }
